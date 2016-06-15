@@ -1,7 +1,7 @@
 FROM microsoft/dotnet:onbuild
 
 RUN apt-get update
-RUN apt-get install -y clang libicu-dev npm
+RUN apt-get install -y clang libicu-dev npm nodejs
 
 WORKDIR /dotnetapp/wwwroot
 RUN npm install -g npm
