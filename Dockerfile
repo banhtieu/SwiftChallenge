@@ -1,22 +1,15 @@
 FROM microsoft/dotnet:1.0.0-rc2-core-deps
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        curl \
-    && rm -rf /var/lib/apt/lists/*
+RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list
 
-# Install .NET Core
-ENV DOTNET_CORE_VERSION 1.0.0-rc2-3002702
-RUN curl -SL https://dotnetcli.blob.core.windows.net/dotnet/beta/Binaries/$DOTNET_CORE_VERSION/dotnet-debian-x64.$DOTNET_CORE_VERSION.tar.gz --output dotnet.tar.gz \
-    && mkdir -p /usr/share/dotnet \
-    && tar -zxf dotnet.tar.gz -C /usr/share/dotnet \
-    && rm dotnet.tar.gz \
-    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
+RUN apt-get update
+
+RUN apt-get install dotnet-dev-1.0.0-preview1-002702
 
 COPY . /app
 WORKDIR /app
 RUN ["dotnet", "restore"]
 
 EXPOSE 5000/tcp
-ENTRYPOINT ["dotnet", "run", "-p", "--server.urls", "http://0.0.0.0:5000"]
+ENTRYPOINT ["dotnet", "run"]
