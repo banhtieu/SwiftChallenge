@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0.0-rc2-core-deps
+FROM ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -11,7 +11,6 @@ RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ tru
 RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
 RUN apt-get -qq update
 
-RUN apt-get -y install liblldb-3.6
 RUN apt-get -y install dotnet-dev
 
 COPY . /app
