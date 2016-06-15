@@ -1,8 +1,8 @@
 FROM microsoft/dotnet:onbuild
 
 RUN wget https://deb.nodesource.com/setup_6.x 
-RUN chmod +x ./setup_6.x
-RUN ./setup_6.x
+RUN chmod +x ./setup_4.x
+RUN ./setup_4.x
 
 RUN apt-get update
 RUN apt-get install -y clang libicu-dev nodejs
