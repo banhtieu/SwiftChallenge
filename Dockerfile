@@ -6,7 +6,7 @@ RUN apt-get -qq update
 RUN apt-get -qqy install apt-utils
 RUN apt-get -qqy install apt-transport-https 
 
-RUN printf "deb [arch=amd64] http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" > /etc/apt/sources.list.d/llvm.list
+RUN printf "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main" > /etc/apt/sources.list.d/llvm.list
 RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list
 
 RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
