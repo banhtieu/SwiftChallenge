@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:onbuild
 
-RUN wget https://deb.nodesource.com/setup_6.x 
+RUN wget https://deb.nodesource.com/setup_4.x 
 RUN chmod +x ./setup_4.x
 RUN ./setup_4.x
 
