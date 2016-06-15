@@ -1,5 +1,7 @@
 FROM microsoft/dotnet:1.0.0-rc2-core-deps
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get -qq update
 RUN apt-get -qqy install apt-utils apt-transport-https 
 RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list
