@@ -10,7 +10,7 @@ RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ tru
 RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
 RUN apt-get -qq update
 
-RUN apt-get -qqy install dotnet-dev
+RUN apt-get -y install dotnet-dev
 
 COPY . /app
 WORKDIR /app
