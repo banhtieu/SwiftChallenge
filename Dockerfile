@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get install -y clang libicu-dev npm
 
 WORKDIR /dotnetapp/wwwroot
+RUN npm install -g npm
 RUN npm update
 RUN npm typings
 RUN npm tsc
