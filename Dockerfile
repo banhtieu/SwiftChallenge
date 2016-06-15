@@ -1,18 +1,18 @@
-FROM ubuntu
+FROM microsoft/dotnet:1.0.0-rc2-core-deps
 
-ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get -qq update
-RUN apt-get -qqy install apt-utils
-RUN apt-get -qqy install apt-transport-https 
-
-RUN printf "deb http://security.ubuntu.com/ubuntu trusty-security main" > /etc/apt/sources.list.d/ubuntutrusty.list
-RUN printf "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list
-
-RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
-RUN apt-get -qq update
-
-RUN apt-get -y install dotnet-dev
+# Install .NET Core
+ENV DOTNET_CORE_VERSION 1.0.0-rc2-3002702
+RUN curl -SL https://dotnetcli.blob.core.windows.net/dotnet/beta/Binaries/$DOTNET_CORE_VERSION/dotnet-debian-x64.$DOTNET_CORE_VERSION.tar.gz --output dotnet.tar.gz \
+    && mkdir -p /usr/share/dotnet \
+    && tar -zxf dotnet.tar.gz -C /usr/share/dotnet \
+    && rm dotnet.tar.gz \
+    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 COPY . /app
 WORKDIR /app
