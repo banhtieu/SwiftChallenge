@@ -1,11 +1,12 @@
 FROM microsoft/dotnet:onbuild
 
+RUN curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+
 RUN apt-get update
-RUN apt-get install -y clang libicu-dev npm nodejs
+RUN apt-get install -y clang libicu-dev nodejs
 
 WORKDIR /dotnetapp/wwwroot
-RUN curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
-RUN apt-get install -y nodejs
+
 
 RUN npm update
 RUN npm run-script typings
