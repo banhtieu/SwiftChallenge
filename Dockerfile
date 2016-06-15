@@ -4,9 +4,9 @@ RUN apt-get update
 RUN apt-get install -y clang libicu-dev npm nodejs
 
 WORKDIR /dotnetapp/wwwroot
-RUN npm install -g npm
-RUN npm install -g n 
-RUN n stable
+RUN curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+RUN apt-get install -y nodejs
+
 RUN npm update
 RUN npm run-script typings
 RUN npm run-script tsc
