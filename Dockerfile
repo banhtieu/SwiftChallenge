@@ -1,11 +1,22 @@
-FROM microsoft/aspnet:latest
+FROM microsoft/dotnet:1.0.0-rc2-core-deps
 
-RUN printf "deb http://ftp.us.debian.org/debian jessie main\n" >> /etc/apt/sources.list
-RUN apt-get -qq update && apt-get install -qqy sqlite3 libsqlite3-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install .NET Core
+ENV DOTNET_CORE_VERSION 1.0.0-rc2-3002702
+RUN curl -SL https://dotnetcli.blob.core.windows.net/dotnet/beta/Binaries/$DOTNET_CORE_VERSION/dotnet-debian-x64.$DOTNET_CORE_VERSION.tar.gz --output dotnet.tar.gz \
+    && mkdir -p /usr/share/dotnet \
+    && tar -zxf dotnet.tar.gz -C /usr/share/dotnet \
+    && rm dotnet.tar.gz \
+    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 COPY . /app
 WORKDIR /app
-RUN ["dnu", "restore"]
+RUN ["dotnet", "restore"]
 
 EXPOSE 5000/tcp
-ENTRYPOINT ["dnx", "-p", "project.json", "Microsoft.AspNet.Server.Kestrel", "--server.urls", "http://0.0.0.0:5000"]
+ENTRYPOINT ["dotnet", "run", "-p", "--server.urls", "http://0.0.0.0:5000"]
