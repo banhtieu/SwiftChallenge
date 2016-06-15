@@ -1,6 +1,8 @@
 FROM microsoft/dotnet:onbuild
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_6.x 
+RUN chmod +x ./setup_6.x
+RUN ./setup_6.x
 
 RUN apt-get update
 RUN apt-get install -y clang libicu-dev nodejs
