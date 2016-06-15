@@ -10,6 +10,7 @@ RUN apt-get install -y clang libicu-dev nodejs
 WORKDIR /dotnetapp/wwwroot
 
 
+RUN npm install -g npm
 RUN npm update
 RUN npm run-script typings
 RUN npm run-script tsc
