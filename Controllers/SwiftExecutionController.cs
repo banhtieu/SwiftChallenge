@@ -27,9 +27,13 @@ namespace SwiftChallenge.Controllers
         private string WriteSourceFile(string body) {
             var sourceFileName = TempDirectory + "/swiftfile.swift";
             var sourceFile = System.IO.File.CreateText(sourceFileName);
+            sourceFile.WriteLine("import Foundation");
             sourceFile.WriteLine(body);
-            sourceFile.Flush();
 
+            var testCases = System.IO.File.ReadAllText("./Problems/Horse.swift");
+            sourceFile.WriteLine(testCases);
+
+            sourceFile.Flush();
             return sourceFileName;
         }
 
@@ -50,11 +54,11 @@ namespace SwiftChallenge.Controllers
             if (process.HasExited) {
                 output = System.IO.File.ReadAllText("output");
                 if (process.ExitCode != 0) {
-                    output = "{ error: \"" + output + "\"}";
+                    output = "{ \"error\" : \"" + output.Replace("\"", "\\\"").Replace("\n", "\\n") + "\"}";
                 }
             } else {
                 process.Kill();
-                output = "{ error: \"Time out\"}";
+                output = "{ \"error\" : \"Time out\"}";
             }
             
             return output;
@@ -62,7 +66,7 @@ namespace SwiftChallenge.Controllers
 
         /// post the solution
         [HttpPost]
-        public string PostSolution(string body) {
+        public string PostSolution([FromBody] string body) {
             CreateTemporaryDirectory();
             var fileName = WriteSourceFile(body);
 

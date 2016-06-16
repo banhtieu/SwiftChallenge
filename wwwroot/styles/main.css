@@ -56,8 +56,21 @@ button {
 .report {
     background-color: #33485F;
     position: fixed;
-    height: 100px;
+    height: 200px;
     bottom: 0;
     width: 100%;
     z-index: 1000;
+}
+
+.table {
+    display: table;
+}
+
+.table > div {
+    display: table-cell;
+}
+
+.answer {
+    width: 60%;
+    color: white;
 }
