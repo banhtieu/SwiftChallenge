@@ -24,7 +24,7 @@ namespace SwiftChallenge.Controllers
                 Directory.CreateDirectory(TempDirectory);
             }
 
-            var sourceFileName = TempDirectory + "/swiftfile.swift > output 2>&1";
+            var sourceFileName = TempDirectory + "/swiftfile.swift";
             var sourceFile = System.IO.File.CreateText(sourceFileName);
             sourceFile.WriteLine("print(\"Hello World\")");
             sourceFile.Flush();
@@ -32,7 +32,7 @@ namespace SwiftChallenge.Controllers
             var process = new Process();
             process.StartInfo.FileName = "swift";
             process.StartInfo.UseShellExecute = true;
-            process.StartInfo.Arguments = sourceFileName;
+            process.StartInfo.Arguments = sourceFileName + " > output 2>&1";
             process.StartInfo.CreateNoWindow = true;
 
             process.Start();
