@@ -21,4 +21,6 @@ RUN wget https://swift.org/builds/swift-3.0-preview-1/ubuntu1404/swift-3.0-previ
 RUN tar xzf swift-3.0-preview-1-ubuntu14.04.tar.gz
 RUN mv ./swift-3.0-preview-1-ubuntu14.04 /swift30
 
+ENV PATH=$PATH:/swift30/usr/bin
+
 
