@@ -16,18 +16,25 @@ namespace SwiftChallenge.Controllers
         /// the temporary directory
         const string TempDirectory = "./Temp";
 
-        /// test running swift controller
-        [HttpGet]
-        public string Get() {
-
+        /// create the temporary directory
+        public void CreateTemporaryDirectory() {
             if (!Directory.Exists(TempDirectory)) {
                 Directory.CreateDirectory(TempDirectory);
             }
+        }
 
+        /// write the source file
+        private string WriteSourceFile(string body) {
             var sourceFileName = TempDirectory + "/swiftfile.swift";
             var sourceFile = System.IO.File.CreateText(sourceFileName);
-            sourceFile.WriteLine("print(\"Hello World\")");
+            sourceFile.WriteLine(body);
             sourceFile.Flush();
+
+            return sourceFileName;
+        }
+
+        /// execute the source files
+        private string Execute(string sourceFileName) {
 
             var process = new Process();
             process.StartInfo.FileName = "swift";
@@ -43,14 +50,23 @@ namespace SwiftChallenge.Controllers
             if (process.HasExited) {
                 output = System.IO.File.ReadAllText("output");
                 if (process.ExitCode != 0) {
-                    output = "Error: " + output;
+                    output = "{ error: \"" + output + "\"}";
                 }
             } else {
                 process.Kill();
-                output = "Time out";
+                output = "{ error: \"Time out\"}";
             }
             
             return output;
+        }
+
+        /// post the solution
+        [HttpPost]
+        public string PostSolution(string body) {
+            CreateTemporaryDirectory();
+            var fileName = WriteSourceFile(body);
+
+            return Execute(fileName);
         }
     }    
 

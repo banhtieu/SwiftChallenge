@@ -1,0 +1,15 @@
+<div class="navigation-bar">
+    <span class="title">{{ problem.title }}</span>
+</div>
+<div class="container">
+    <div class="problem panel">
+        <div class="content" [innerHTML]="problem.description"></div>
+    </div>
+    <div class="panel">
+        <div #editordiv class="code-editor"></div>
+    </div>
+</div>
+<div class="report">
+    <div><pre>{{ result }}</pre></div>
+    <div><button>Submit</button></div>
+</div>

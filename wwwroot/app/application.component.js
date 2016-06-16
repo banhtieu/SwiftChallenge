@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var code_editor_component_1 = require('./code-editor.component');
 var ApplicationComponent = (function () {
     function ApplicationComponent() {
     }
@@ -17,6 +18,7 @@ var ApplicationComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'the-application',
+            directives: [code_editor_component_1.CodeEditorComponent],
             templateUrl: 'application.component.html'
         }), 
         __metadata('design:paramtypes', [])
