@@ -2,7 +2,7 @@
 var tests = [[String: AnyObject]]()
 
 // do the test
-func test<T: Equatable>(data: String, expectation: T, testCase: () -> T) {
+func test<T: Equatable>(_ data: String, expectation: T, testCase: () -> T) {
     tests.append([
         "data": data,
         "expectation": "\(expectation)",
@@ -13,8 +13,8 @@ func test<T: Equatable>(data: String, expectation: T, testCase: () -> T) {
 
 func end() {
     do {
-        let json = try NSJSONSerialization.dataWithJSONObject(tests, options: .PrettyPrinted)
-        print(String(data: json, encoding: NSUTF8StringEncoding)!)
+        let json = try JSONSerialization.data(withJSONObject: tests, options: .prettyPrinted)
+        print(String(data: json, encoding: String.Encoding.utf8)!)
     } catch {
         print("{ error: True }")
     }
