@@ -12,7 +12,7 @@ WORKDIR /dotnetapp/wwwroot
 
 RUN npm install -g npm
 RUN npm update
-RUN npm run-script typings
+RUN npm run-script typings install
 RUN npm run-script tsc
 
 WORKDIR /dotnetapp
