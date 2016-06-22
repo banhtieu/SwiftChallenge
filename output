@@ -1,1 +1,7 @@
-Hello World
+./Temp/swiftfile.swift:9:25: warning: extraneous '_' in parameter: 'data' has no keyword argument name
+func test<T: Equatable>(_ data: String, expectation: T, testCase: () -> T) {
+                        ^~
+                        
+./Temp/swiftfile.swift:20:24: error: use of unresolved identifier 'JSONSerialization'
+        let json = try JSONSerialization.data(withJSONObject: tests, options: .prettyPrinted)
+                       ^~~~~~~~~~~~~~~~~
