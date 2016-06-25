@@ -35,6 +35,10 @@ var CodeEditorComponent = (function () {
         this.editor.setTheme("ace/theme/monokai");
         this.editor.getSession().setMode("ace/mode/swift");
         this.editor.setValue(this.problem ? this.problem.initialCode : '', 1);
+        this.editor.setOptions({
+            fontFamily: "Menlo",
+            fontSize: "14px"
+        });
         console.log(this.editor);
     };
     // on submit the solution

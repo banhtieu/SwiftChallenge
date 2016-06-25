@@ -4,73 +4,28 @@ body {
     font-family: Roboto;
 }
 
-.navigation-bar {
-    height: 50px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: #33485F;
-}
-
-.navigation-bar .title {
-    margin: 15px;
-    color: white;
-    font-size: 18px;
-    display: inline-block;
-}
-
 .container {
-    display: table;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-}
-
-.panel {
-    display: table-cell;
-    position: relative;
-    width: 50%;
-    resize: horizontal;
+    max-width: 1000px;
+    margin: 60px auto 0px;
 }
 
 .code-editor {
     width: 100%;
-    height: 100%;
+    min-height: 400px;
 }
 
-.panel.problem {
-    padding: 10px;
+.ui.segment.code-editor {
+    background-color: #272822;
 }
 
-button {
-    float: left;
-    min-width: 150px;
-    max-width: 250px;
-    display: block;
-    margin: 1em;
-    padding: 1em 2em;
-    cursor: pointer;
+div.ui.segments {
+    border-radius: 0;
 }
 
-.report {
-    background-color: #33485F;
-    position: fixed;
-    height: 200px;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
+.ui.button {
+    border-radius: 0;
 }
 
-.table {
-    display: table;
-}
-
-.table > div {
-    display: table-cell;
-}
-
-.answer {
-    width: 60%;
-    color: white;
+.ui.feed > .event > .label img {
+    border-radius: 3px;
 }

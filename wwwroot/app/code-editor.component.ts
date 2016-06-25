@@ -59,6 +59,11 @@ export class CodeEditorComponent implements OnInit {
         this.editor.getSession().setMode("ace/mode/swift")
         this.editor.setValue(this.problem ? this.problem.initialCode : '', 1)
 
+        this.editor.setOptions({
+            fontFamily: "Menlo",
+            fontSize: "14px"
+        });
+
         console.log(this.editor)
     }
 

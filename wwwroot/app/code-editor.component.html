@@ -1,25 +1,57 @@
-<div class="navigation-bar">
-    <span class="title">{{ problem.title }}</span>
-</div>
-<div class="container">
-    <div class="problem panel">
-        <div class="content" [innerHTML]="problem.description"></div>
-    </div>
-    <div class="panel">
-        <div #editordiv class="code-editor"></div>
-    </div>
-</div>
-<div class="report">
-    <div class="table" style="width: 100%; height: 100%">
-        <div><button (click)="onSubmit()">Submit</button></div>
-        <div class="answer" style="width: 60%; height: 100%; overflow: scroll">
-            <div *ngFor="#item of answer">
-                <span>Test Case: </span>
-                <span>Expectation: {{ item.expectation }}</span>
-                <span>Result: {{ item.result }}</span>
-                <span>Pass: {{ item.pass }}</span>
+<div class="ui stacked segments">
+    <div class="ui segment">
+        <div class="ui feed">
+            <div class="event">
+                <div class="label">
+                    <img src="http://graph.facebook.com/718933983/picture?type=square">
+                </div>
+                <div class="content">
+                    <div class="summary">
+                        <a>Trần Thiện Khiêm</a> posted <a>a problem</a>
+                        <div class="date">
+                        3 days ago
+                        </div>
+                    </div>
+                    <div class="extra text" [innerHtml]="problem.description">
+                    </div>
+                </div>
             </div>
-            <div>{{ error }}</div>
+        </div>
+    </div> 
+    <div class="ui segment">
+        <div class="ui feed">
+            <div class="event">
+                <div class="label">
+                    <img src="http://graph.facebook.com/718933983/picture?type=square">
+                </div>
+                <div class="content">
+                    <div class="summary">
+                        <a>Trần Thiện Khiêm</a> replied with <a>a solution</a>
+                        <div class="date">
+                        3 days ago
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <a>
+                            <i class="code icon"></i>
+                            View solution
+                        </a>
+                        <a class="like">
+                            <i class="like icon"></i> 5 Likes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment code-editor" #editordiv>
+    </div>
+    <div class="ui segment">
+        <div class="meta">
+            <button class="ui button">Test</button>
+            <button class="ui button">Submit Solution</button>
         </div>
     </div>
 </div>
+<br />
+
