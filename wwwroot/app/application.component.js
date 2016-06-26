@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var code_editor_component_1 = require('./code-editor.component');
+var app_login_component_1 = require('./app-login.component');
 var ApplicationComponent = (function () {
     function ApplicationComponent() {
     }
@@ -18,7 +19,7 @@ var ApplicationComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'the-application',
-            directives: [code_editor_component_1.CodeEditorComponent],
+            directives: [code_editor_component_1.CodeEditorComponent, app_login_component_1.AppLoginComponent],
             templateUrl: 'application.component.html'
         }), 
         __metadata('design:paramtypes', [])

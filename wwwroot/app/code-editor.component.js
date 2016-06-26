@@ -32,6 +32,7 @@ var CodeEditorComponent = (function () {
     CodeEditorComponent.prototype.ngAfterViewInit = function () {
         var div = this.editorDiv.nativeElement;
         this.editor = ace.edit(div);
+        this.editor.$blockScrolling = Infinity;
         this.editor.setTheme("ace/theme/monokai");
         this.editor.getSession().setMode("ace/mode/swift");
         this.editor.setValue(this.problem ? this.problem.initialCode : '', 1);
@@ -39,7 +40,6 @@ var CodeEditorComponent = (function () {
             fontFamily: "Menlo",
             fontSize: "14px"
         });
-        console.log(this.editor);
     };
     // on submit the solution
     CodeEditorComponent.prototype.onSubmit = function (evt) {
@@ -55,7 +55,6 @@ var CodeEditorComponent = (function () {
             else {
                 _this.answer = response.json();
             }
-            console.log(_this.answer);
         });
     };
     __decorate([

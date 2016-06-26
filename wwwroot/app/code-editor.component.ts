@@ -48,23 +48,23 @@ export class CodeEditorComponent implements OnInit {
                     2 ô tiếp theo là của quân đen.<br /> 
                     Tìm lượt đi của người tiếp theo. <br /> 
                     Trả về true nếu là quân trắng.`
+
     }
     
     // initialize the editor
     ngAfterViewInit() {
         var div = this.editorDiv.nativeElement
         this.editor = ace.edit(div)
-
+        this.editor.$blockScrolling = Infinity
         this.editor.setTheme("ace/theme/monokai")
         this.editor.getSession().setMode("ace/mode/swift")
         this.editor.setValue(this.problem ? this.problem.initialCode : '', 1)
+        
 
         this.editor.setOptions({
             fontFamily: "Menlo",
             fontSize: "14px"
         });
-
-        console.log(this.editor)
     }
 
     // on submit the solution
@@ -81,7 +81,6 @@ export class CodeEditorComponent implements OnInit {
                     } else {
                         this.answer = response.json()
                     }
-                    console.log(this.answer)
                 }
             )
     }

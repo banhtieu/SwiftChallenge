@@ -29,3 +29,7 @@ div.ui.segments {
 .ui.feed > .event > .label img {
     border-radius: 3px;
 }
+
+.ui.left.sidebar {
+    top: 46px;
+}
